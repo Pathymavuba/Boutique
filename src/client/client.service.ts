@@ -25,4 +25,16 @@ export class ClientService {
     const client = new this.clientModel(createClientDto);
     return client.save();
   }
+  /**
+   * @returns
+   */
+  async getClient() {
+    return this.clientModel
+      .find()
+      .then((clients) => {
+        if (clients.length < 1) return 'no clients found';
+        else return clients;
+      })
+      .catch((err) => console.log(err));
+  }
 }

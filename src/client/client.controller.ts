@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create_cleint.dto';
 
@@ -14,5 +14,9 @@ export class ClientController {
     const client = await this.clientService.createClient(createClientDto);
 
     return response.json({ client });
+  }
+  @Get('client')
+  async getClient() {
+    return this.clientService.getClient();
   }
 }
