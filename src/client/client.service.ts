@@ -37,4 +37,33 @@ export class ClientService {
       })
       .catch((err) => console.log(err));
   }
+  /**
+   * @param id String
+   * @returns
+   */
+  async readOneClient(id: string) {
+    return this.clientModel
+      .findById({ _id: id })
+      .then(function (client) {
+        if (!client) return `client with id ${id} does not exist`;
+        else return client;
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
+  /**
+   *
+   * @param id String
+   * @param data CreateClientDto
+   */
+  async updateClient(id: string, data: CreateClientDto) {
+    return this.clientModel.findByIdAndUpdate(id, data, { new: true });
+  }
+  /**
+   *  @param id String
+   */
+  async deleteClient(id: string) {
+    return this.clientModel.deleteOne({ _id: id });
+  }
 }
