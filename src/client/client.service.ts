@@ -63,6 +63,7 @@ export class ClientService {
   /**
    *  @param id String
    */
+
   async deleteClient(id: string) {
     return this.clientModel.deleteOne({ _id: id });
   }
